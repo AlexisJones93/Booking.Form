@@ -4,56 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".BookingActivity">
 
     <EditText
-        android:id="@+id/emailAddress"
+        android:id="@+id/childFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
+        android:hint="Child's name"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.239" />
+        app:layout_constraintVertical_bias="0.075" />
 
     <EditText
-        android:id="@+id/pWord"
+        android:id="@+id/childSecondName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
         android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
+        android:hint="School"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddress"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintTop_toBottomOf="@+id/childFirstName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Register"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pWord"
-        app:layout_constraintVertical_bias="0.187" />
-
-    <TextView
-        android:id="@+id/btnSignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Already Registered?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register"
-        app:layout_constraintVertical_bias="0.306" />
-
+        app:layout_constraintTop_toBottomOf="@+id/childSecondName"
+        app:layout_constraintVertical_bias="0.21" />
 </androidx.constraintlayout.widget.ConstraintLayout>

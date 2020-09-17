@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/emailAddress"
+        android:id="@+id/eAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.239" />
+        app:layout_constraintVertical_bias="0.246" />
 
     <EditText
         android:id="@+id/pWord"
@@ -29,31 +29,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddress"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintTop_toBottomOf="@+id/eAddress"
+        app:layout_constraintVertical_bias="0.165" />
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/signButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Register"
+        android:text="Sign In"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pWord"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintVertical_bias="0.219" />
 
     <TextView
-        android:id="@+id/btnSignIn"
+        android:id="@+id/RegButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already Registered?"
+        android:text="Not Registered?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintTop_toBottomOf="@+id/signButton"
+        app:layout_constraintVertical_bias="0.394" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
