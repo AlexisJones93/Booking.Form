@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button newBooking,signOut;
+    Button newBooking,signOut,viewbtn;
 
 
     @Override
@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         newBooking = findViewById(R.id.btnBooking);
         signOut = findViewById(R.id.signOutbtn);
-
+        viewbtn = findViewById(R.id.viewingBtn);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,6 +41,8 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity. this, BookingActivity.class));
             }
         });
+
+
 
 
 

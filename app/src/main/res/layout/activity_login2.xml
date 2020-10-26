@@ -14,10 +14,11 @@
         android:hint="Email Address"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_Right"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintVertical_bias="0.409" />
 
     <EditText
         android:id="@+id/pWord"
@@ -27,22 +28,27 @@
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_Right"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
         app:layout_constraintTop_toBottomOf="@+id/eAddress"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintVertical_bias="0.155" />
 
     <Button
         android:id="@+id/signButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="177dp"
+        android:layout_height="47dp"
+        android:background="@drawable/rounded_button"
         android:text="Sign In"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_Right"
+        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
         app:layout_constraintTop_toBottomOf="@+id/pWord"
-        app:layout_constraintVertical_bias="0.219" />
+        app:layout_constraintVertical_bias="0.206" />
 
     <TextView
         android:id="@+id/RegButton"
@@ -54,5 +60,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signButton"
         app:layout_constraintVertical_bias="0.394" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="334dp"
+        android:layout_height="208dp"
+        android:background="#FFFFFF"
+        android:fadingEdge="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/eAddress"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_Right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/applogo" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_Left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_Right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
