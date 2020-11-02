@@ -5,9 +5,17 @@ public class user {
     private String School;
     private String UID;
   // private String key;
+    public user (){
 
-    public user() {
+    }
 
+    public user (String Firstname, String School) {
+        this.Firstname = Firstname;
+        this.School =School;
+    }
+
+    public String toString(){
+      return "Child's name: " + this.Firstname + "        Child's School: " + this.School;
     }
 
     public void setFirstname(String firstname) {

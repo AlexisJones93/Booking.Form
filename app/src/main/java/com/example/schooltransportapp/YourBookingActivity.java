@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,19 +21,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class YourBookingActivity extends AppCompatActivity {
 
 
     String UID,key;
     FirebaseAuth mAuth;
-    TextView txt1,txt2;
+    //TextView txt1,txt2;
+    ListView listView1;
+    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_booking);
 
+        /* use with working one set of data code
         txt1 = findViewById(R.id.dFirstname);
         txt2 = findViewById(R.id.dSchool);
+         */
+
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
         UID = user1.getUid();
@@ -40,17 +50,23 @@ public class YourBookingActivity extends AppCompatActivity {
 
       //  key = ref.child(UID).getKey();
 
-
-
+       listView1 = findViewById(R.id.listViewtxt);
+       arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayList);
+       listView1.setAdapter(arrayAdapter);
 
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-               user cuser = snapshot.getValue(user.class);
-              // System.out.println(cuser);
-                 txt1.setText(cuser.getFirstname());
-                txt2.setText(cuser.getSchool());
+             String value = snapshot.getValue(user.class).toString();
+             arrayList.add(value);
+             arrayAdapter.notifyDataSetChanged();
 
+
+                /* Working text for one data set to be displayed
+                    user cuser = snapshot.getValue(user.class);
+                    txt1.setText(cuser.getFirstname());
+                    txt2.setText(cuser.getSchool());
+                */
             }
 
             @Override
