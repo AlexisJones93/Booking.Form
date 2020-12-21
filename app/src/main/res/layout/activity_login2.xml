@@ -4,74 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/background">
 
-    <EditText
-        android:id="@+id/eAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/guideline_Right"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
-
-    <EditText
-        android:id="@+id/pWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/guideline_Right"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
-        app:layout_constraintTop_toBottomOf="@+id/eAddress"
-        app:layout_constraintVertical_bias="0.155" />
-
-    <Button
-        android:id="@+id/signButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="177dp"
-        android:layout_height="47dp"
-        android:background="@drawable/rounded_button"
-        android:text="Sign In"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/guideline_Right"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
-        app:layout_constraintTop_toBottomOf="@+id/pWord"
-        app:layout_constraintVertical_bias="0.206" />
-
-    <TextView
-        android:id="@+id/RegButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Not Registered?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signButton"
-        app:layout_constraintVertical_bias="0.394" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="334dp"
-        android:layout_height="208dp"
-        android:background="#FFFFFF"
-        android:fadingEdge="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/eAddress"
-        app:layout_constraintEnd_toEndOf="@+id/guideline_Right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/applogo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_Left"
@@ -85,6 +20,109 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="24dp" />
+        app:layout_constraintGuide_end="24dp"/>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="310dp"
+        android:layout_height="515dp"
+        android:background="@drawable/trans_rectangle"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.398">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="250dp"
+            android:layout_height="210dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="50dp"
+            android:background="@android:color/transparent"
+            android:fadingEdge="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/emailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/newlogo2" />
+
+        <EditText
+            android:id="@+id/eAddress"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#ffff"
+            android:ems="10"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:textColor="#ffff"
+            android:textColorHint="#ffff"
+            android:textColorLink="#ffff" />
+
+        <EditText
+            android:id="@+id/pWord"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#ffff"
+            android:ems="10"
+            android:hint="  Password"
+            android:inputType="textPassword"
+            android:textColor="#ffff"
+            android:textColorHighlight="#ffff"
+            android:textColorHint="#ffff"
+            android:textColorLink="#ffff" />
+
+        <Button
+            android:id="@+id/signButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button"
+            android:text="Sign in"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/regButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:text="Forgotten Password?"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/RegButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:text="New? Register Here"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/regButton"
+            app:layout_constraintTop_toBottomOf="@+id/signButton"
+            app:layout_constraintVertical_bias="0.175" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

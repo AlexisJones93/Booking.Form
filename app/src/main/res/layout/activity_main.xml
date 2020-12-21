@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background">
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="334dp"
         android:layout_height="208dp"
         android:layout_marginTop="64dp"
-        android:background="#FFFFFF"
         android:fadingEdge="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/emailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/applogo" />
+        app:srcCompat="@drawable/newlogo2" />
 
     <EditText
         android:id="@+id/emailAddress"
@@ -27,11 +28,16 @@
         android:ems="10"
         android:hint="Email Address"
         android:inputType="textEmailAddress"
+        android:textColor="#ffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintVertical_bias="0.407"
+        android:textColorHint="#ffff"
+        android:textColorLink="#ffff"
+        android:backgroundTint="#ffff"/>
 
     <EditText
         android:id="@+id/pWord"
@@ -40,11 +46,15 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailAddress"
-        app:layout_constraintVertical_bias="0.09" />
+        app:layout_constraintVertical_bias="0.09"
+        android:textColorHint="#ffff"
+        android:textColorLink="#ffff"
+        android:backgroundTint="#ffff"/>
 
     <Button
         android:id="@+id/register"
@@ -57,17 +67,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pWord"
-        app:layout_constraintVertical_bias="0.112" />
+        app:layout_constraintVertical_bias="0.14" />
 
     <TextView
         android:id="@+id/btnSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Already Registered?"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintVertical_bias="0.281" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

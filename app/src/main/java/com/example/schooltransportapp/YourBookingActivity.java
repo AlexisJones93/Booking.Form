@@ -5,9 +5,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.icu.text.Transliterator;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,12 +32,17 @@ import java.util.ArrayList;
 public class YourBookingActivity extends AppCompatActivity {
 
 
-    String UID,key;
+    String UID, key;
     FirebaseAuth mAuth;
     //TextView txt1,txt2;
     ListView listView1;
     ArrayList<String> arrayList = new ArrayList<>();
+    ArrayList<String> keysList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
+    Button dltBtn;
+    user user;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,25 +52,27 @@ public class YourBookingActivity extends AppCompatActivity {
         txt1 = findViewById(R.id.dFirstname);
         txt2 = findViewById(R.id.dSchool);
          */
+        dltBtn = findViewById(R.id.dltButton);
 
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
-        UID = user1.getUid();
+        String UID = user1.getUid();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("user").child(UID);
+        final DatabaseReference ref = database.getReference("user").child(UID);
 
-      //  key = ref.child(UID).getKey();
+         //final String key = ref.child("user").getKey();
 
-       listView1 = findViewById(R.id.listViewtxt);
-       arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayList);
-       listView1.setAdapter(arrayAdapter);
+        listView1 = findViewById(R.id.listViewtxt);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView1.setAdapter(arrayAdapter);
 
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-             String value = snapshot.getValue(user.class).toString();
-             arrayList.add(value);
-             arrayAdapter.notifyDataSetChanged();
+                String value = snapshot.getValue(user.class).toString();
+                arrayList.add(value);
+               keysList.add(snapshot.getKey());
+                arrayAdapter.notifyDataSetChanged();
 
 
                 /* Working text for one data set to be displayed
@@ -76,7 +89,12 @@ public class YourBookingActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                String string = snapshot.getValue(user.class).toString();
 
+                arrayList.remove(string);
+                keysList.remove(snapshot.getKey());
+
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -90,8 +108,79 @@ public class YourBookingActivity extends AppCompatActivity {
             }
 
 
-
-
         });
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+            //  module.setgValue_id(arrayList.get(i));
+            //  module.setgValue_Name(arrayList.get(i));
+               // module .setgValue_id(arrayList.get(i));
+                //String item = arrayAdapter.getItem(i);
+
+                /*
+                String item = arrayList.get(i);
+                arrayList.remove(item);
+                arrayAdapter.notifyDataSetChanged();
+                ref.removeValue();
+                */
+
+
+                //Working delete code
+                //String key = keysList.get(i);
+                // ref.child(key).removeValue();
+
+                Intent updateanddelete = new Intent(YourBookingActivity.this,UpdateAndDelete1.class);
+               user u = (user) adapterView.getItemAtPosition(i);
+                updateanddelete.putExtra("Firstname", u.getFirstname().toString());
+                //updateanddelete.putExtra("School" , u);
+              // updateanddelete.putExtra("user", u.getUID());
+                startActivity(updateanddelete);
+
+            }
+        });
+
+
+        dltBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // final String str = module.getgValue_id().substring(0,10);
+               // ref.child(str).removeValue();
+               // DatabaseReference dRecord =FirebaseDatabase.getInstance().getReference("users").child(UID);
+               // dRecord.removeValue();
+
+
+
+
+               /* final String str = module.getgValue_id().substring(0,10);
+                if (str==""){
+                    Toast.makeText(YourBookingActivity.this,"Please select data before deleting",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    ref.child("user").child(str).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ref.child(str).removeValue();
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    Toast.makeText(YourBookingActivity.this,"Deleted",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),YourBookingActivity.class);
+                    startActivity(intent);
+                }
+*/
+
+            }
+
+
+
+       });
+
+
     }
 }
