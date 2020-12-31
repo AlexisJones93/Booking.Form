@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:background="@drawable/background">
-
+    android:background="@drawable/background"
+    tools:context=".AddNewUserActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_Left"
@@ -22,7 +20,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="24dp"/>
-
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
@@ -53,39 +50,51 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/newlogo2" />
 
-        <EditText
-            android:id="@+id/eAddress"
-            android:layout_width="235dp"
+        <TextView
+            android:layout_width="290dp"
             android:layout_height="42dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/registeration_message"
+            android:textSize="15dp"
+            android:textColor="#ffff"
+            android:gravity="center">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/parentName"
+            android:layout_width="290dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:backgroundTint="#ffff"
             android:ems="10"
-            android:hint="Email Address"
+            android:hint="Your name"
             android:inputType="textEmailAddress"
             android:textColor="#ffff"
             android:textColorHint="#ffff"
             android:textColorLink="#ffff" />
 
         <EditText
-            android:id="@+id/pWord"
-            android:layout_width="235dp"
+            android:id="@+id/contactNumber"
+            android:layout_width="290dp"
             android:layout_height="42dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:backgroundTint="#ffff"
             android:ems="10"
-            android:hint="  Password"
-            android:inputType="textPassword"
+            android:hint="Contact number"
+            android:inputType="number"
             android:textColor="#ffff"
             android:textColorHighlight="#ffff"
             android:textColorHint="#ffff"
             android:textColorLink="#ffff" />
 
         <Button
-            android:id="@+id/signButton"
+            android:id="@+id/save"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="170dp"
             android:layout_height="40dp"
@@ -93,37 +102,15 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/rounded_button"
-            android:text="Sign in"
+            android:text="Save"
             android:textColor="#000000"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/regButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:text="Forgotten Password?"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/RegButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:text="New? Register Here"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/regButton"
-            app:layout_constraintTop_toBottomOf="@+id/signButton"
-            app:layout_constraintVertical_bias="0.175" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
