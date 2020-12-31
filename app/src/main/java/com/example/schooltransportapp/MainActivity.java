@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                                     if(task.isSuccessful()){
                                         Toast.makeText(MainActivity.this, "Authentication successful.",
                                                 Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                                        startActivity(new Intent(MainActivity.this, AddNewUserActivity.class));
                                     }
                                     else {
                                         FirebaseAuthException e = (FirebaseAuthException) task.getException();

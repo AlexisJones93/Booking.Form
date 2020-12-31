@@ -69,8 +69,10 @@ public class YourBookingActivity extends AppCompatActivity {
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String value = snapshot.getValue(user.class).toString();
-                arrayList.add(value);
+
+                String value = snapshot.getValue(user.class).getFirstname();
+                String value2 = snapshot.getValue(user.class).getSchool();
+                arrayList.add(value + "\n" + value2);
                keysList.add(snapshot.getKey());
                 arrayAdapter.notifyDataSetChanged();
 
@@ -126,12 +128,12 @@ public class YourBookingActivity extends AppCompatActivity {
 
 
                 //Working delete code
-                //String key = keysList.get(i);
-                // ref.child(key).removeValue();
+               // String key = keysList.get(i);
+            //    ref.child(key).removeValue();
 
                 Intent updateanddelete = new Intent(YourBookingActivity.this,UpdateAndDelete1.class);
-               user u = (user) adapterView.getItemAtPosition(i);
-                updateanddelete.putExtra("Firstname", u.getFirstname().toString());
+              // user u = (user) adapterView.getItemAtPosition(i);
+               updateanddelete.putExtra("Firstname", arrayList.get(i));
                 //updateanddelete.putExtra("School" , u);
               // updateanddelete.putExtra("user", u.getUID());
                 startActivity(updateanddelete);
