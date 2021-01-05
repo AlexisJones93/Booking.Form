@@ -1,5 +1,6 @@
 package com.example.schooltransportapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,8 +11,13 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.EventListener;
 
 public class UpdateAndDelete1 extends AppCompatActivity {
 
@@ -29,7 +35,7 @@ public class UpdateAndDelete1 extends AppCompatActivity {
         cSchool = findViewById(R.id.childSchool);
         delButton = findViewById(R.id.delete_btn);
         savButton = findViewById(R.id.save_btn);
-        //String  key = getIntent().getExtras().get("user").toString();
+        final String  key = getIntent().getStringExtra("Firstname");
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
         final String UID = user1.getUid();
@@ -37,7 +43,30 @@ public class UpdateAndDelete1 extends AppCompatActivity {
         final DatabaseReference ref = database.getReference("user").child(UID);
 
         cName.setText(getIntent().getStringExtra("Firstname"));
-        cSchool.setText(getIntent().getStringExtra("School"));
+        //cSchool.setText(key);
+
+        ref.child(key).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user cuser = snapshot.getValue(user.class);
+                cSchool.setText(cuser.getFirstname());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        savButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String fdata = cSchool.getText().toString();
+                ref.child(key).child("firstname").setValue(fdata);
+            }
+        });
+
 
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -133,7 +133,7 @@ public class YourBookingActivity extends AppCompatActivity {
 
                 Intent updateanddelete = new Intent(YourBookingActivity.this,UpdateAndDelete1.class);
               // user u = (user) adapterView.getItemAtPosition(i);
-               updateanddelete.putExtra("Firstname", arrayList.get(i));
+               updateanddelete.putExtra("Firstname",keysList.get(i));
                 //updateanddelete.putExtra("School" , u);
               // updateanddelete.putExtra("user", u.getUID());
                 startActivity(updateanddelete);
