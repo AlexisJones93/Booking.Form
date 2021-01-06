@@ -3,6 +3,7 @@ package com.example.schooltransportapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,14 +43,29 @@ public class UpdateAndDelete1 extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference("user").child(UID);
 
-        cName.setText(getIntent().getStringExtra("Firstname"));
+        //cName.setText(getIntent().getStringExtra("Firstname"));
         //cSchool.setText(key);
 
-        ref.child(key).addValueEventListener(new ValueEventListener() {
+
+        delButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ref.child(key).removeValue();
+                Intent deletecomplete = new Intent(UpdateAndDelete1.this,YourBookingActivity.class);
+                startActivity(deletecomplete);
+            }
+
+
+        });
+
+
+        ref.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user cuser = snapshot.getValue(user.class);
-                cSchool.setText(cuser.getFirstname());
+                cName.setText(cuser.getFirstname());
+                cSchool.setText(cuser.getSchool());
             }
 
             @Override
@@ -62,20 +78,18 @@ public class UpdateAndDelete1 extends AppCompatActivity {
         savButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fdata = cSchool.getText().toString();
-                ref.child(key).child("firstname").setValue(fdata);
+                String nData = cName.getText().toString();
+                String sData = cSchool.getText().toString();
+
+                ref.child(key).child("firstname").setValue(nData);
+                ref.child(key).child("school").setValue(sData);
             }
         });
 
 
-        delButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ref.removeValue();
-            }
 
-
-        });
 
     }
+
+
 }
