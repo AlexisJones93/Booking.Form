@@ -8,8 +8,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +30,8 @@ EditText cFirstName, cLastName;
 Button submit;
 user user;
 DrawerLayout drawerLayout;
+Spinner yeargroup;
+RadioButton btnFemale, btnMale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,20 +42,17 @@ DrawerLayout drawerLayout;
         cFirstName = findViewById(R.id.childFirstName);
         cLastName = findViewById(R.id.childSecondName);
         submit = findViewById(R.id.btnSubmit);
+        yeargroup = findViewById(R.id.spinner1);
+        btnFemale = findViewById(R.id.female);
+        btnMale = findViewById(R.id.male);
 
-       /// FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        //Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+//list of items for the spinner.
+        String[] years = new String[]{"Year 7", "Year 8", "Year 9", "Year 10", "Year 11", "Year 12", "Year 13"};
 
-        /*Working code block
-
-       mAuth = FirebaseAuth.getInstance();
-       final FirebaseUser user = mAuth.getCurrentUser();
-       UID = user.getUid();
-        final DatabaseReference myRootRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://schooltrasportapp.firebaseio.com/user");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        yeargroup.setAdapter(adapter);
 
 
-         */
-        //Test code
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
         UID = user1.getUid();
@@ -62,21 +65,33 @@ DrawerLayout drawerLayout;
             @Override
             public void onClick(View view) {
 
+                if(btnFemale.isChecked()){
+                    String fbtn =btnFemale.getText().toString();
+                    user.setGender(fbtn);
+                }
+                else{
+                    String mbtn =btnMale.getText().toString();
+                    user.setGender(mbtn);
+                }
+
                 String fdata = cFirstName.getText().toString();
                 String sdata = cLastName.getText().toString();
-
+                String text = yeargroup.getSelectedItem().toString();
                 user.setFirstname(fdata);
                 user.setSchool(sdata);
+                user.setYearGroup(text);
 
              rootDatabase.child(UID).push().setValue(user);
 
+/// FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                //Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
 
-
-
-
-
-
-
+        /*Working code block
+       mAuth = FirebaseAuth.getInstance();
+       final FirebaseUser user = mAuth.getCurrentUser();
+       UID = user.getUid();
+        final DatabaseReference myRootRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://schooltrasportapp.firebaseio.com/user");
+         */
 
 
              // String fdata = cFirstName.getText().toString();
@@ -109,10 +124,6 @@ DrawerLayout drawerLayout;
             }
         });
 
-
-
-
-
     }
 
     public void ClickMenu(View view){
@@ -140,11 +151,10 @@ DrawerLayout drawerLayout;
         BookingActivity.redirectActivity(this,BookingActivity.class);
         recreate();
     }
-/*
-public void ClickAboutUs(View view){
-        redirectActivity(this,);
-}
-*/
+
+    public void ClickViewBooking(View view){
+        BookingActivity.redirectActivity(this,YourBookingActivity.class);
+    }
 
     public void ClickLogout(View view){
         logout(this);

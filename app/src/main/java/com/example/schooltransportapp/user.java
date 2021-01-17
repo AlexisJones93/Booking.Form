@@ -3,15 +3,37 @@ package com.example.schooltransportapp;
 public class user {
     private String Firstname;
     private String School;
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        Gender = gender;
+    }
+
+    private String Gender;
+
+    public String getYearGroup() {
+        return YearGroup;
+    }
+
+    public void setYearGroup(String yearGroup) {
+        YearGroup = yearGroup;
+    }
+
+    private String YearGroup;
     private String UID;
   // private String key;
     public user (){
 
     }
 
-    public user (String Firstname, String School) {
+    public user (String Firstname, String School, String yearGroup, String Gender) {
         this.Firstname = Firstname;
         this.School =School;
+        this.YearGroup=yearGroup;
+        this.Gender=Gender;
     }
 
     public String toString(){

@@ -3,6 +3,8 @@ package com.example.schooltransportapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -39,9 +41,8 @@ public class YourBookingActivity extends AppCompatActivity {
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> keysList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
-    Button dltBtn;
     user user;
-
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class YourBookingActivity extends AppCompatActivity {
         txt1 = findViewById(R.id.dFirstname);
         txt2 = findViewById(R.id.dSchool);
          */
-        dltBtn = findViewById(R.id.dltButton);
+
 
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
@@ -114,7 +115,19 @@ public class YourBookingActivity extends AppCompatActivity {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-            //  module.setgValue_id(arrayList.get(i));
+
+                Intent updateanddelete = new Intent(YourBookingActivity.this,UpdateAndDelete1.class);
+                // user u = (user) adapterView.getItemAtPosition(i);
+                updateanddelete.putExtra("Firstname",keysList.get(i));
+                //updateanddelete.putExtra("School" , u);
+                // updateanddelete.putExtra("user", u.getUID());
+                startActivity(updateanddelete);
+
+
+                //*************************Redundant code****************************
+
+
+                //  module.setgValue_id(arrayList.get(i));
             //  module.setgValue_Name(arrayList.get(i));
                // module .setgValue_id(arrayList.get(i));
                 //String item = arrayAdapter.getItem(i);
@@ -126,25 +139,19 @@ public class YourBookingActivity extends AppCompatActivity {
                 ref.removeValue();
                 */
 
-
                 //Working delete code
                // String key = keysList.get(i);
             //    ref.child(key).removeValue();
 
-                Intent updateanddelete = new Intent(YourBookingActivity.this,UpdateAndDelete1.class);
-              // user u = (user) adapterView.getItemAtPosition(i);
-               updateanddelete.putExtra("Firstname",keysList.get(i));
-                //updateanddelete.putExtra("School" , u);
-              // updateanddelete.putExtra("user", u.getUID());
-                startActivity(updateanddelete);
+
 
             }
         });
 
 
-        dltBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        //dltBtn.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+          //  public void onClick(View view) {
                // final String str = module.getgValue_id().substring(0,10);
                // ref.child(str).removeValue();
                // DatabaseReference dRecord =FirebaseDatabase.getInstance().getReference("users").child(UID);
@@ -180,9 +187,56 @@ public class YourBookingActivity extends AppCompatActivity {
             }
 
 
+    public void ClickMenu(View view){
+        openDrawer(drawerLayout);
+    }
 
-       });
+    private static void openDrawer(DrawerLayout drawerLayout) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
 
+    public void ClickLogo(View view){
+        closeDrawer(drawerLayout);
+    }
+
+    private void closeDrawer(DrawerLayout drawerLayout) {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    public void ClickHome(View view){
+        YourBookingActivity.redirectActivity(this,HomeActivity.class);
+    }
+    public void ClickBooking(View view){
+        YourBookingActivity.redirectActivity(this,BookingActivity.class);
+    }
+
+    public void ClickViewBooking(View view){
+        recreate();
+    }
+
+
+    public void ClickLogout(View view){
+        logout(this);
+    }
+    private void logout(Activity activity){
+        FirebaseAuth.getInstance().signOut();
+        YourBookingActivity.redirectActivity(this,LoginActivity.class);
+    }
+
+
+    private static void redirectActivity(Activity activity,Class aClass) {
+        Intent intent = new Intent (activity,aClass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
 
     }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        closeDrawer(drawerLayout);
+    }
+
 }
