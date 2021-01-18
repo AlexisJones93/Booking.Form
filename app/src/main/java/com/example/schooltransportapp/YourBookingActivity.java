@@ -71,10 +71,15 @@ public class YourBookingActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                String value = snapshot.getValue(user.class).getFirstname();
-                String value2 = snapshot.getValue(user.class).getSchool();
-                arrayList.add(value + "\n" + value2);
-               keysList.add(snapshot.getKey());
+                String name = snapshot.getValue(user.class).getFirstname();
+                String school = snapshot.getValue(user.class).getSchool();
+                String contactNo = snapshot.getValue(user.class).getChildNumber();
+                String gender = snapshot.getValue(user.class).getGender();
+                String yeargroup = snapshot.getValue(user.class).getYearGroup();
+                String date = snapshot.getValue(user.class).getDate();
+                String time = snapshot.getValue(user.class).getTime();
+                arrayList.add("Booking"+ "\n" + name + "\n" + school + "\n" + contactNo + "\n" + gender + "\n" + yeargroup + "\n" + date + "\n" + time);
+                keysList.add(snapshot.getKey());
                 arrayAdapter.notifyDataSetChanged();
 
 

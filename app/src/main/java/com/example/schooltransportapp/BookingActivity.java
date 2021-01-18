@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,17 +23,24 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
 public class BookingActivity extends AppCompatActivity {
 
 DatabaseReference rootDatabase;
 String UID;
 FirebaseAuth mAuth;
-EditText cFirstName, cLastName;
+EditText cFirstName, cLastName, cNumber;
 Button submit;
 user user;
 DrawerLayout drawerLayout;
 Spinner yeargroup;
 RadioButton btnFemale, btnMale;
+DatePicker colDate;
+TimePicker colTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +50,16 @@ RadioButton btnFemale, btnMale;
         drawerLayout = findViewById(R.id.drawer_layout);
         cFirstName = findViewById(R.id.childFirstName);
         cLastName = findViewById(R.id.childSecondName);
+        cNumber = findViewById(R.id.childPhone);
         submit = findViewById(R.id.btnSubmit);
         yeargroup = findViewById(R.id.spinner1);
         btnFemale = findViewById(R.id.female);
         btnMale = findViewById(R.id.male);
+        colDate = findViewById(R.id.date_picker);
+        colTime = findViewById(R.id.time_picker);
+
+
+
 
 //list of items for the spinner.
         String[] years = new String[]{"Year 7", "Year 8", "Year 9", "Year 10", "Year 11", "Year 12", "Year 13"};
@@ -58,12 +73,23 @@ RadioButton btnFemale, btnMale;
         UID = user1.getUid();
 
         user = new user();
+
         rootDatabase = FirebaseDatabase.getInstance().getReference().child("user");
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                int   day  = colDate.getDayOfMonth();
+                int   month= colDate.getMonth();
+                int   year = colDate.getYear();
+                Calendar spinner = Calendar.getInstance();
+                spinner.set(year, month, day);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                final String formatedDate = sdf.format(spinner.getTime());
+
 
                 if(btnFemale.isChecked()){
                     String fbtn =btnFemale.getText().toString();
@@ -76,15 +102,20 @@ RadioButton btnFemale, btnMale;
 
                 String fdata = cFirstName.getText().toString();
                 String sdata = cLastName.getText().toString();
+                String childNum = cNumber.getText().toString();
                 String text = yeargroup.getSelectedItem().toString();
+                String time = colTime.getCurrentHour().toString() + ":" + colTime.getCurrentMinute().toString();
                 user.setFirstname(fdata);
                 user.setSchool(sdata);
+                user.setChildNumber(childNum);
                 user.setYearGroup(text);
+                user.setDate(formatedDate);
+                user.setTime(time);
 
              rootDatabase.child(UID).push().setValue(user);
 
-/// FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                //Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
+            /// FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                // Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
 
         /*Working code block
        mAuth = FirebaseAuth.getInstance();

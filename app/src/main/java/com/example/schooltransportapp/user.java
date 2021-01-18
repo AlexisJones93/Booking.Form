@@ -4,6 +4,35 @@ public class user {
     private String Firstname;
     private String School;
 
+    public String getChildNumber() {
+        return ChildNumber;
+    }
+
+    public void setChildNumber(String childNumber) {
+        ChildNumber = childNumber;
+    }
+
+    private String ChildNumber;
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
+    public void setTime(String time) {
+        Time = time;
+    }
+
+    private String Date;
+    private String Time;
+
     public String getGender() {
         return Gender;
     }
@@ -29,11 +58,14 @@ public class user {
 
     }
 
-    public user (String Firstname, String School, String yearGroup, String Gender) {
+    public user (String Firstname, String School, String yearGroup, String gender, String date, String time, String childNumber) {
         this.Firstname = Firstname;
         this.School =School;
         this.YearGroup=yearGroup;
-        this.Gender=Gender;
+        this.Gender=gender;
+        this.Date=date;
+        this.Time = time;
+        this.ChildNumber = childNumber;
     }
 
     public String toString(){
