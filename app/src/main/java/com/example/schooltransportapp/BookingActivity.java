@@ -114,6 +114,9 @@ TimePicker colTime;
 
              rootDatabase.child(UID).push().setValue(user);
 
+                startActivity(new Intent(BookingActivity. this, HomeActivity.class));
+                Toast.makeText(BookingActivity.this,"Booking Saved",Toast.LENGTH_LONG).show();
+
             /// FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 // Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
 

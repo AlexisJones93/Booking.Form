@@ -53,7 +53,7 @@ public class YourBookingActivity extends AppCompatActivity {
         txt1 = findViewById(R.id.dFirstname);
         txt2 = findViewById(R.id.dSchool);
          */
-
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();

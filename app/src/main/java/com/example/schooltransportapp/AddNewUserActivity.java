@@ -71,7 +71,7 @@ public class AddNewUserActivity extends AppCompatActivity {
             String school = cschool.getText().toString();
             UserDetails.setUsersname(name);
             UserDetails.setUsercontactnumber(contactnumber);
-            UserDetails.setUsercontactnumber(school);
+            UserDetails.setChildschool(school);
             rootDatabase.child(UID).setValue(UserDetails);
         }
     }

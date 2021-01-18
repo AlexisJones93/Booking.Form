@@ -11,6 +11,11 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="Collection_Date">Collection Date</string>
+    <string name="name"><u>Name</u></string>
+    <string name="contact"><u>Child Contact Number</u></string>
+    <string name="year_group"><u>Year Group</u></string>
+    <string name="school"><u>school</u></string>
+    <string name="gender"><u>Gender</u></string>
+    <string name="Collection_Date"><u>Collection Date</u></string>
     <string name="Collection_Time"><u>Collection Time</u></string>
 </resources>

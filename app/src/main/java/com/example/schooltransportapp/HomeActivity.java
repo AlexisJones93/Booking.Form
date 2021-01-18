@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     DrawerLayout drawerLayout;
-    TextView uName, uemail, ucontact;
+    TextView uName, uemail, ucontact, uSchool;
     FirebaseAuth mAuth;
 
 
@@ -41,6 +41,9 @@ public class HomeActivity extends AppCompatActivity {
         uName = findViewById(R.id.userName);
         uemail = findViewById(R.id.useremail);
         ucontact = findViewById(R.id.usercontact);
+        uSchool = findViewById(R.id.userschool);
+
+
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
         String UID = user1.getUid();
@@ -58,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
                        uName.setText("Welcome back to your account " + cuser.getUsersname() + "!");
                        uemail.setText(user.getEmail());
                        ucontact.setText(cuser.getUsercontactnumber());
+                       uSchool.setText(cuser.getChildschool());
                       // Toast.makeText(HomeActivity.this," User",Toast.LENGTH_SHORT).show();
                    }
                    else{
