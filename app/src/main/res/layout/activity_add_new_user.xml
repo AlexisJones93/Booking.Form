@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background1"
     tools:context=".AddNewUserActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -19,98 +19,110 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="24dp"/>
+        app:layout_constraintGuide_end="24dp" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linearLayoutCompat"
-        android:layout_width="310dp"
-        android:layout_height="515dp"
-        android:background="@drawable/trans_rectangle"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="230dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:fadingEdge="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/emailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/guideline_Left"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.398">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="250dp"
-            android:layout_height="210dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="50dp"
-            android:background="@android:color/transparent"
-            android:fadingEdge="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/emailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.571"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/newlogo2" />
-
-        <TextView
-            android:layout_width="290dp"
-            android:layout_height="42dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="@string/registeration_message"
-            android:textSize="15dp"
-            android:textColor="#ffff"
-            android:gravity="center">
-
-        </TextView>
-
-        <EditText
-            android:id="@+id/parentName"
-            android:layout_width="290dp"
-            android:layout_height="42dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:backgroundTint="#ffff"
-            android:ems="10"
-            android:hint="Your name"
-            android:inputType="textEmailAddress"
-            android:textColor="#ffff"
-            android:textColorHint="#ffff"
-            android:textColorLink="#ffff" />
-
-        <EditText
-            android:id="@+id/contactNumber"
-            android:layout_width="290dp"
-            android:layout_height="42dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:backgroundTint="#ffff"
-            android:ems="10"
-            android:hint="Contact number"
-            android:inputType="number"
-            android:textColor="#ffff"
-            android:textColorHighlight="#ffff"
-            android:textColorHint="#ffff"
-            android:textColorLink="#ffff" />
-
-        <Button
-            android:id="@+id/save"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="170dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="65dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/rounded_button"
-            android:text="Save"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/finallogo" />
 
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="293dp"
+        android:layout_height="62dp"
+        android:gravity="center"
+        android:text="@string/registeration_message"
+        android:textColor="#31709e"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/contactNumber"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.178">
 
+    </TextView>
 
+    <EditText
+        android:id="@+id/parentName"
+        android:layout_width="290dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#31709e"
+        android:ems="10"
+        android:hint="Your name"
+        android:inputType="textEmailAddress"
+        android:textColor="#31709e"
+        android:textColorHint="#31709e"
+        android:textColorLink="#31709e"
+        app:layout_constraintBottom_toTopOf="@+id/contactNumber"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
+        app:layout_constraintHorizontal_bias="0.608"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/contactNumber"
+        android:layout_width="290dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="#31709e"
+        android:ems="10"
+        android:hint="Contact number"
+        android:inputType="number"
+        android:textColor="#31709e"
+        android:textColorHighlight="#31709e"
+        android:textColorHint="#31709e"
+        android:textColorLink="#31709e"
+        app:layout_constraintBottom_toTopOf="@+id/save"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left" />
+
+    <EditText
+        android:id="@+id/childschools"
+        android:layout_width="290dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="44dp"
+        android:backgroundTint="#31709e"
+        android:ems="10"
+        android:hint="Your childs school"
+        android:inputType="number"
+        android:textColor="#31709e"
+        android:textColorHighlight="#31709e"
+        android:textColorHint="#31709e"
+        android:textColorLink="#31709e"
+        app:layout_constraintBottom_toTopOf="@+id/save"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left" />
+
+    <Button
+        android:id="@+id/save"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="96dp"
+        android:background="@drawable/rounded_button"
+        android:text="Save"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_Right"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/guideline_Left" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

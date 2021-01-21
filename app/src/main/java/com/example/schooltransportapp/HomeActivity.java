@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     DrawerLayout drawerLayout;
-    TextView uName, uemail, ucontact;
+    TextView uName, uemail, ucontact, uSchool;
     FirebaseAuth mAuth;
 
 
@@ -40,29 +41,44 @@ public class HomeActivity extends AppCompatActivity {
         uName = findViewById(R.id.userName);
         uemail = findViewById(R.id.useremail);
         ucontact = findViewById(R.id.usercontact);
+        uSchool = findViewById(R.id.userschool);
+
+
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
         String UID = user1.getUid();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference("userdetails").child(UID);
 
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                userdetails cuser = snapshot.getValue(userdetails.class);
-                uName.setText("Welcome back " + cuser.getUsersname() + "!");
-                uemail.setText(user.getEmail());
-                ucontact.setText(cuser.getUsercontactnumber());
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   FirebaseUser user = mAuth.getCurrentUser();
+                   userdetails cuser = snapshot.getValue(userdetails.class);
+                   if(cuser!=null){
+                       uName.setText("Welcome back to your account " + cuser.getUsersname() + "!");
+                       uemail.setText(user.getEmail());
+                       ucontact.setText(cuser.getUsercontactnumber());
+                       uSchool.setText(cuser.getChildschool());
+                      // Toast.makeText(HomeActivity.this," User",Toast.LENGTH_SHORT).show();
+                   }
+                   else{
+                      // Toast.makeText(HomeActivity.this," No User",Toast.LENGTH_SHORT).show();
+                       FirebaseAuth.getInstance().signOut();
+                       startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                   }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            
     }
-
 
     public void ClickMenu(View view){
         openDrawer(drawerLayout);
