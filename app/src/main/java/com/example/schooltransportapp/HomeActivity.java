@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-       // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         
         drawerLayout = findViewById(R.id.drawer_layout);
         uName = findViewById(R.id.userName);
@@ -51,13 +51,16 @@ public class HomeActivity extends AppCompatActivity {
         final DatabaseReference ref = database.getReference("userdetails").child(UID);
 
 
-
+            // listener used to listen when a user is signed in.
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                    FirebaseUser user = mAuth.getCurrentUser();
                    userdetails cuser = snapshot.getValue(userdetails.class);
+                   //if statement checking user exists
                    if(cuser!=null){
+
+                       //if they do then their details will display and they will be welcomed.
                        uName.setText("Welcome back to your account " + cuser.getUsersname() + "!");
                        uemail.setText(user.getEmail());
                        ucontact.setText(cuser.getUsercontactnumber());
@@ -65,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
                       // Toast.makeText(HomeActivity.this," User",Toast.LENGTH_SHORT).show();
                    }
                    else{
-                      // Toast.makeText(HomeActivity.this," No User",Toast.LENGTH_SHORT).show();
+                       // if not then they will be sent back to the login page.
                        FirebaseAuth.getInstance().signOut();
                        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                    }
@@ -80,57 +83,60 @@ public class HomeActivity extends AppCompatActivity {
             
     }
 
+    //NAV Drawer code
+
     public void ClickMenu(View view){
-        openDrawer(drawerLayout);
-    }
+                    openDrawer(drawerLayout);
+                }
 
-    private static void openDrawer(DrawerLayout drawerLayout) {
-drawerLayout.openDrawer(GravityCompat.START);
-    }
+                private static void openDrawer(DrawerLayout drawerLayout) {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
 
-    public void ClickLogo(View view){
-        closeDrawer(drawerLayout);
-    }
+                public void ClickLogo(View view){
+                    closeDrawer(drawerLayout);
+                }
 
-    private void closeDrawer(DrawerLayout drawerLayout) {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-    }
+                private void closeDrawer(DrawerLayout drawerLayout) {
+                    if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                    }
+                }
 
-public void ClickHome(View view){
-        recreate();
-}
-public void ClickBooking(View view){
-        HomeActivity.redirectActivity(this,BookingActivity.class);
-}
+                public void ClickHome(View view){
+                        recreate();
+                }
+                public void ClickBooking(View view){
+                        HomeActivity.redirectActivity(this,BookingActivity.class);
+                }
 
-public void ClickViewBooking(View view){
-        HomeActivity.redirectActivity(this,YourBookingActivity.class);
-    }
-
-
-public void ClickLogout(View view){
-        logout(this);
-}
-private void logout(Activity activity){
-    FirebaseAuth.getInstance().signOut();
-    HomeActivity.redirectActivity(this,LoginActivity.class);
-}
+                public void ClickViewBooking(View view){
+                        HomeActivity.redirectActivity(this,YourBookingActivity.class);
+                }
 
 
-    private static void redirectActivity(Activity activity,Class aClass) {
-        Intent intent = new Intent (activity,aClass);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(intent);
+            public void ClickLogout(View view){
+                    logout(this);
+            }
 
-    }
+            private void logout(Activity activity){
+                FirebaseAuth.getInstance().signOut();
+                HomeActivity.redirectActivity(this,LoginActivity.class);
+            }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-        closeDrawer(drawerLayout);
-    }
+
+                private static void redirectActivity(Activity activity,Class aClass) {
+                    Intent intent = new Intent (activity,aClass);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    activity.startActivity(intent);
+
+                }
+
+                @Override
+                protected void onPause(){
+                    super.onPause();
+                    closeDrawer(drawerLayout);
+                }
 
 }
 

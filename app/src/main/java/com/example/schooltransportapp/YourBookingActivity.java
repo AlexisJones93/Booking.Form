@@ -64,6 +64,7 @@ public class YourBookingActivity extends AppCompatActivity {
          //final String key = ref.child("user").getKey();
 
         listView1 = findViewById(R.id.listViewtxt);
+        //setting the array adapter for the listview
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView1.setAdapter(arrayAdapter);
 
@@ -71,6 +72,7 @@ public class YourBookingActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+                //getting the value from the user class and setting the data to textfields
                 String name = snapshot.getValue(user.class).getFirstname();
                 String school = snapshot.getValue(user.class).getSchool();
                 String contactNo = snapshot.getValue(user.class).getChildNumber();
@@ -78,7 +80,11 @@ public class YourBookingActivity extends AppCompatActivity {
                 String yeargroup = snapshot.getValue(user.class).getYearGroup();
                 String date = snapshot.getValue(user.class).getDate();
                 String time = snapshot.getValue(user.class).getTime();
+
+                //saving the retrieved data to the array list
                 arrayList.add("Booking"+ "\n" + name + "\n" + school + "\n" + contactNo + "\n" + gender + "\n" + yeargroup + "\n" + date + "\n" + time);
+
+                //saving the key that is retrieved with the data.
                 keysList.add(snapshot.getKey());
                 arrayAdapter.notifyDataSetChanged();
 
@@ -120,10 +126,10 @@ public class YourBookingActivity extends AppCompatActivity {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-
+                // passing data from this activity to the update and delete activity.
                 Intent updateanddelete = new Intent(YourBookingActivity.this,UpdateAndDelete1.class);
                 // user u = (user) adapterView.getItemAtPosition(i);
-                updateanddelete.putExtra("Firstname",keysList.get(i));
+                updateanddelete.putExtra("Booking",keysList.get(i));
                 //updateanddelete.putExtra("School" , u);
                 // updateanddelete.putExtra("user", u.getUID());
                 startActivity(updateanddelete);
@@ -191,7 +197,7 @@ public class YourBookingActivity extends AppCompatActivity {
 
             }
 
-
+// Nav Draw code.
     public void ClickMenu(View view){
         openDrawer(drawerLayout);
     }

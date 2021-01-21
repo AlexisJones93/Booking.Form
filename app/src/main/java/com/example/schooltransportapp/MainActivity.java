@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
        // surnameName = findViewById(R.id.sName);
        // phoneNumber = findViewById(R.id.PNumber);
 
+        //already have an account button
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,20 +54,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = emailId.getText().toString();
                 String pwd = passWord.getText().toString();
-               // final String fNames = firstName.getText().toString();
-               // final String sNames = surnameName.getText().toString();
-              //  final String phone = phoneNumber.getText().toString();
 
-
-               // if(fNames.isEmpty()){
-              //      firstName.setError("Please enter your first name");
-              //      firstName.requestFocus();
-
-             //   }
-              //  else if(sNames.isEmpty()) {
-              //      surnameName.setError("Please enter your email address");
-              //      surnameName.requestFocus();
-             //   }
+                // checks fields are filled.
                 if(email.isEmpty()) {
                     emailId.setError("Please enter your email address");
                     emailId.requestFocus();
@@ -80,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 else{
+                    //creates new user with email address and password.
                     mAuth.createUserWithEmailAndPassword(email, pwd)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override

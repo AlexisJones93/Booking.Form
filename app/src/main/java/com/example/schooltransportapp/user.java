@@ -1,5 +1,6 @@
 package com.example.schooltransportapp;
 
+//creates a user for the database and passes information through getter and setters
 public class user {
     private String Firstname;
     private String School;
