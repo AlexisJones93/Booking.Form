@@ -59,16 +59,22 @@ public class AddNewUserActivity extends AppCompatActivity {
     }
 
     public void addNewUser(){
+
+        //Checking the fields are filled
         if(parentname.getText().toString().equals("") || contact.getText().toString().equals("")){
             Toast.makeText(AddNewUserActivity.this,"Please make sure both fields are filled",Toast.LENGTH_SHORT).show();
         }
+        //if the fields are filled then create new user details
         else{
             UserDetails = new userdetails();
             rootDatabase = FirebaseDatabase.getInstance().getReference().child("userdetails");
 
+            //Read what is in the fields and convert to string
             String name = parentname.getText().toString();
             String contactnumber = contact.getText().toString();
             String school = cschool.getText().toString();
+
+            //set the string fields to the database
             UserDetails.setUsersname(name);
             UserDetails.setUsercontactnumber(contactnumber);
             UserDetails.setChildschool(school);

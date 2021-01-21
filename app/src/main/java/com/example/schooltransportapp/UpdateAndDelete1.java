@@ -47,7 +47,7 @@ public class UpdateAndDelete1 extends AppCompatActivity {
         savButton = findViewById(R.id.save_btn);
 
 
-        final String  key = getIntent().getStringExtra("Firstname");
+        final String  key = getIntent().getStringExtra("Booking");
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user1 = mAuth.getCurrentUser();
         final String UID = user1.getUid();
@@ -61,7 +61,7 @@ public class UpdateAndDelete1 extends AppCompatActivity {
         delButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //removes the values at the users key from the database
                 ref.child(key).removeValue();
                 Intent deletecomplete = new Intent(UpdateAndDelete1.this,YourBookingActivity.class);
                 Toast.makeText(UpdateAndDelete1.this,"Deleted",Toast.LENGTH_SHORT).show();
@@ -75,6 +75,7 @@ public class UpdateAndDelete1 extends AppCompatActivity {
         ref.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+               //fetches data from the key that its been given and sets in the edit text boxes.
                 user cuser = snapshot.getValue(user.class);
                 cName.setText(cuser.getFirstname());
                 cSchool.setText(cuser.getSchool());
@@ -103,6 +104,7 @@ public class UpdateAndDelete1 extends AppCompatActivity {
                 String colDate = collectionDate.getText().toString();
                 String colTime = collectionTime.getText().toString();
 
+                //sets the new values of the edited booking
                 ref.child(key).child("firstname").setValue(nData);
                 ref.child(key).child("school").setValue(sData);
                 ref.child(key).child("yearGroup").setValue(yData);

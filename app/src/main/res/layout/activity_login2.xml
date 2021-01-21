@@ -62,7 +62,7 @@
         android:ems="10"
         android:hint="Email Address"
         android:inputType="textEmailAddress"
-        android:textColor="#ffff"
+        android:textColor="#31709e"
         android:textColorHint="#31709e"
         android:textColorLink="#31709e"
         app:layout_constraintEnd_toEndOf="parent"
